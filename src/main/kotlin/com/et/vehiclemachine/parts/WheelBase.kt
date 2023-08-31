@@ -2,9 +2,8 @@ package com.et.vehiclemachine.parts
 
 class WheelBase(
     val size: Size,
-    val chassis: Chasis
+    val chassis: Chassis
 ) : Part {
-    val chasis: Chasis = Chasis()
     val wheels: List<Wheel> = listOf(
         Wheel(), Wheel(), Wheel(), Wheel()
     )
@@ -15,6 +14,8 @@ class WheelBase(
             Size.MEDIUM -> 9750
             Size.SMALL -> 5250
         }
+    override val totalCost: Int
+        get() = price + wheels.sumOf { it.totalCost } + chassis.totalCost
 
     enum class Size { SMALL, MEDIUM, LARGE }
 }

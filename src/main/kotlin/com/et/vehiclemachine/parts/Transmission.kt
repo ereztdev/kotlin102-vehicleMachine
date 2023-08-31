@@ -1,7 +1,15 @@
 package com.et.vehiclemachine.parts
 
-class Transmission:Part {
+class Transmission(
+    val type: Type
+) : Part {
     override val price: Int
-        get() = 1500
+        get() = when (this.type) {
+            Type.MANUAL -> 1250
+            Type.AUTOMATIC -> 2000
+        }
 
+    override val totalCost = price
+
+    enum class Type { AUTOMATIC, MANUAL }
 }
