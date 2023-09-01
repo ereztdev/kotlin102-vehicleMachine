@@ -1,11 +1,18 @@
 package com.et.vehiclemachine.parts
 
+import com.et.vehiclemachine.parts.wheel.Wheel
+import com.et.vehiclemachine.parts.wheel.WheelFactory
+
 class WheelBase(
     val size: Size,
-    val chassis: Chassis
+    val chassis: Chassis,
+    wheelFactory: WheelFactory
 ) : Part {
     val wheels: List<Wheel> = listOf(
-        Wheel(), Wheel(), Wheel(), Wheel()
+        wheelFactory.createWheel(),
+        wheelFactory.createWheel(),
+        wheelFactory.createWheel(),
+        wheelFactory.createWheel(),
     )
     
     override val price: Int

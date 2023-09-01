@@ -1,6 +1,17 @@
 package com.et.vehiclemachine.parts
 
-class Chassis(val type: Type) : Part {
+import com.et.vehiclemachine.parts.seat.Seat
+
+class Chassis(
+    val type: Type,
+    seatFactory: Seat.factory
+) : Part {
+    val seats: List<Seat> = listOf(
+        seatFactory.createSeat(),
+        seatFactory.createSeat(),
+        seatFactory.createSeat(),
+        seatFactory.createSeat(),
+    )
     override val price: Int
         get() = when (this.type) {
             Type.SEDAN -> 2500
@@ -9,11 +20,7 @@ class Chassis(val type: Type) : Part {
             Type.VAN -> 4500
         }
     override val totalCost: Int
-        get() = price + seats.sumOf { it.price }
-
-    val seats: List<Seat> = listOf(
-        Seat(), Seat(), Seat(), Seat(),
-    )
+        get() = price + seats.sumOf { it.totalCost }
 
     enum class Type { VAN, SEDAN, SUV, PICKUP }
 }

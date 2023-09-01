@@ -4,6 +4,9 @@ import com.et.vehiclemachine.parts.Chassis
 import com.et.vehiclemachine.parts.Engine
 import com.et.vehiclemachine.parts.Transmission
 import com.et.vehiclemachine.parts.WheelBase
+import com.et.vehiclemachine.parts.seat.Seat
+import com.et.vehiclemachine.parts.wheel.Wheel
+import com.et.vehiclemachine.parts.wheel.WheelFactory
 import com.et.vehiclemachine.vehicle.Vehicle
 
 
@@ -18,8 +21,10 @@ fun main(args: Array<String>) {
         WheelBase(
             WheelBase.Size.MEDIUM,
             Chassis(
-                Chassis.Type.SEDAN
-            )
+                Chassis.Type.SEDAN,
+                Seat.factory(Seat.Upholstery.LEATHER)
+            ),
+            WheelFactory(Wheel.Type.STEEL)
         ),
         Engine(
             Engine.Type.PETROL,
